@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài Lab 18 - Thành Viên Mới</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f6f8; padding: 40px; }
+        .manage-box { max-width: 500px; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin: auto; }
+        .input-group { display: flex; gap: 8px; margin-bottom: 20px; }
+        input[type="text"] { flex: 1; padding: 8px 12px; border: 1px solid #ced4da; border-radius: 6px; outline: none; }
+        #btnThem { background: #17a2b8; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #f8f9fa; color: #6c757d; font-size: 14px; padding: 10px; border-bottom: 2px solid #dee2e6; }
+        td { padding: 10px; text-align: center; border-bottom: 1px solid #eee; color: #333; }
+        .btn-action { padding: 4px 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600; margin: 0 2px; }
+        .btnSua { background: #ffc107; color: #212529; }
+        .btnXoa { background: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="manage-box">
+        <h3 style="margin-top:0; color:#333; border-bottom: 2px solid #17a2b8; padding-bottom: 10px;">Quản Lý Đội Nhóm</h3>
+        <div class="input-group">
+            <input type="text" id="txtTen" placeholder="Nhập tên thành viên mới...">
+            <button id="btnThem">Thêm</button>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 15%;">STT</th>
+                    <th style="text-align: left;">Họ và Tên</th>
+                    <th style="width: 35%;">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="listThanhVien">
+                <tr><td class="stt">1</td><td class="ten" style="text-align: left;">Phạm Minh Tuấn</td><td><button class="btn-action btnSua">Sửa</button><button class="btn-action btnXoa">Xóa</button></td></tr>
+                <tr><td class="stt">2</td><td class="ten" style="text-align: left;">Lê Thu Thảo</td><td><button class="btn-action btnSua">Sửa</button><button class="btn-action btnXoa">Xóa</button></td></tr>
+                <tr><td class="stt">3</td><td class="ten" style="text-align: left;">Nguyễn Hoàng Long</td><td><button class="btn-action btnSua">Sửa</button><button class="btn-action btnXoa">Xóa</button></td></tr>
+                <tr><td class="stt">4</td><td class="ten" style="text-align: left;">Vũ Hải Yến</td><td><button class="btn-action btnSua">Sửa</button><button class="btn-action btnXoa">Xóa</button></td></tr>
+                <tr><td class="stt">5</td><td class="ten" style="text-align: left;">Trần Đức Anh</td><td><button class="btn-action btnSua">Sửa</button><button class="btn-action btnXoa">Xóa</button></td></tr>
+                <tr><td class="stt">6</td><td class="ten" style="text-align: left;">Đặng Ngọc Huyền</td><td><button class="btn-action btnSua">Sửa</button><button class="btn-action btnXoa">Xóa</button></td></tr>
+                <tr><td class="stt">7</td><td class="ten" style="text-align: left;">Bùi Quang Huy</td><td><button class="btn-action btnSua">Sửa</button><button class="btn-action btnXoa">Xóa</button></td></tr>
+                <tr><td class="stt">8</td><td class="ten" style="text-align: left;">Đỗ Khánh Linh</td><td><button class="btn-action btnSua">Sửa</button><button class="btn-action btnXoa">Xóa</button></td></tr>
+                <tr><td class="stt">9</td><td class="ten" style="text-align: left;">Ngô Minh Triết</td><td><button class="btn-action btnSua">Sửa</button><button class="btn-action btnXoa">Xóa</button></td></tr>
+                <tr><td class="stt">10</td><td class="ten" style="text-align: left;">Hoàng Bảo Ngọc</td><td><button class="btn-action btnSua">Sửa</button><button class="btn-action btnXoa">Xóa</button></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            function capNhatSTT() {
+                $(".stt").each(function(i) { $(this).text(i + 1); });
+            }
+            
+            $("#btnThem").click(function() {
+                let ten = $("#txtTen").val().trim();
+                if (!ten) return alert("Không để trống tên!");
+                
+                $("#listThanhVien").append(`<tr>
+                    <td class="stt"></td>
+                    <td class="ten" style="text-align: left;">${ten}</td>
+                    <td><button class="btn-action btnSua">Sửa</button><button class="btn-action btnXoa">Xóa</button></td>
+                </tr>`);
+                $("#txtTen").val("");
+                capNhatSTT();
+            });
+
+            $("#listThanhVien").on("click", ".btnXoa", function() {
+                if (confirm("Xóa thành viên này?")) {
+                    $(this).closest("tr").remove();
+                    capNhatSTT();
+                }
+            });
+
+            $("#listThanhVien").on("click", ".btnSua", function() {
+                let row = $(this).closest("tr");
+                let cellTen = row.find(".ten");
+
+                if ($(this).text() === "Sửa") {
+                    let hienTai = cellTen.text();
+                    cellTen.html(`<input type="text" class="editInput" value="${hienTai}" style="width:90%; padding:2px;">`);
+                    $(this).text("Lưu").css("background", "#28a745").css("color", "white");
+                } else {
+                    let moi = cellTen.find(".editInput").val().trim();
+                    if (!moi) return alert("Không để trống!");
+                    cellTen.text(moi);
+                    $(this).text("Sửa").css("background", "#ffc107").css("color", "#212529");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

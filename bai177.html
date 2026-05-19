@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài Lab 17 - Giỏ Hàng 10 Sản Phẩm</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; padding: 40px; }
+        .cart-container { max-width: 700px; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding-bottom: 12px; border-bottom: 2px solid #dee2e6; color: #495057; }
+        td { padding: 12px 0; border-bottom: 1px solid #eee; color: #333; }
+        .qty-box { display: flex; align-items: center; gap: 5px; }
+        .qty-box button { width: 26px; height: 26px; border: 1px solid #ced4da; background: white; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .qty-box button:hover { background: #f8f9fa; }
+        .qty-input { width: 35px; text-align: center; border: none; font-weight: 600; }
+        .total-section { text-align: right; margin-top: 20px; font-size: 20px; font-weight: bold; color: #222; }
+    </style>
+</head>
+<body>
+
+    <div class="cart-container">
+        <h3 style="margin-top: 0; color: #212529; border-bottom: 2px solid #e67e22; padding-bottom: 10px;">Giỏ Hàng Công Nghệ</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th style="text-align: center;">Số lượng</th>
+                    <th style="text-align: right;">Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="item">
+                    <td style="font-weight: 600;">MacBook Pro M3</td>
+                    <td><span class="price">32000000</span>đ</td>
+                    <td>
+                        <div class="qty-box" style="justify-content: center;">
+                            <button class="minus">-</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="plus">+</button>
+                        </div>
+                    </td>
+                    <td style="text-align: right; font-weight: 600;"><span class="subtotal">32000000</span>đ</td>
+                </tr>
+                <tr class="item">
+                    <td style="font-weight: 600;">Sony WH-1000XM5</td>
+                    <td><span class="price">6500000</span>đ</td>
+                    <td>
+                        <div class="qty-box" style="justify-content: center;">
+                            <button class="minus">-</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="plus">+</button>
+                        </div>
+                    </td>
+                    <td style="text-align: right; font-weight: 600;"><span class="subtotal">6500000</span>đ</td>
+                </tr>
+                <tr class="item">
+                    <td style="font-weight: 600;">iPhone 15 Pro Max</td>
+                    <td><span class="price">29500000</span>đ</td>
+                    <td>
+                        <div class="qty-box" style="justify-content: center;">
+                            <button class="minus">-</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="plus">+</button>
+                        </div>
+                    </td>
+                    <td style="text-align: right; font-weight: 600;"><span class="subtotal">29500000</span>đ</td>
+                </tr>
+                <tr class="item">
+                    <td style="font-weight: 600;">iPad Pro M2</td>
+                    <td><span class="price">21000000</span>đ</td>
+                    <td>
+                        <div class="qty-box" style="justify-content: center;">
+                            <button class="minus">-</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="plus">+</button>
+                        </div>
+                    </td>
+                    <td style="text-align: right; font-weight: 600;"><span class="subtotal">21000000</span>đ</td>
+                </tr>
+                <tr class="item">
+                    <td style="font-weight: 600;">Apple Watch Ultra 2</td>
+                    <td><span class="price">19900000</span>đ</td>
+                    <td>
+                        <div class="qty-box" style="justify-content: center;">
+                            <button class="minus">-</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="plus">+</button>
+                        </div>
+                    </td>
+                    <td style="text-align: right; font-weight: 600;"><span class="subtotal">19900000</span>đ</td>
+                </tr>
+                <tr class="item">
+                    <td style="font-weight: 600;">Bàn phím cơ Keychron K2</td>
+                    <td><span class="price">1800000</span>đ</td>
+                    <td>
+                        <div class="qty-box" style="justify-content: center;">
+                            <button class="minus">-</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="plus">+</button>
+                        </div>
+                    </td>
+                    <td style="text-align: right; font-weight: 600;"><span class="subtotal">1800000</span>đ</td>
+                </tr>
+                <tr class="item">
+                    <td style="font-weight: 600;">Chuột Logitech MX Master 3S</td>
+                    <td><span class="price">2400000</span>đ</td>
+                    <td>
+                        <div class="qty-box" style="justify-content: center;">
+                            <button class="minus">-</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="plus">+</button>
+                        </div>
+                    </td>
+                    <td style="text-align: right; font-weight: 600;"><span class="subtotal">2400000</span>đ</td>
+                </tr>
+                <tr class="item">
+                    <td style="font-weight: 600;">Màn hình Dell Ultrasharp 27</td>
+                    <td><span class="price">8500000</span>đ</td>
+                    <td>
+                        <div class="qty-box" style="justify-content: center;">
+                            <button class="minus">-</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="plus">+</button>
+                        </div>
+                    </td>
+                    <td style="text-align: right; font-weight: 600;"><span class="subtotal">8500000</span>đ</td>
+                </tr>
+                <tr class="item">
+                    <td style="font-weight: 600;">Tai nghe AirPods Pro 2</td>
+                    <td><span class="price">5500000</span>đ</td>
+                    <td>
+                        <div class="qty-box" style="justify-content: center;">
+                            <button class="minus">-</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="plus">+</button>
+                        </div>
+                    </td>
+                    <td style="text-align: right; font-weight: 600;"><span class="subtotal">5500000</span>đ</td>
+                </tr>
+                <tr class="item">
+                    <td style="font-weight: 600;">Sạc dự phòng Anker 20000mAh</td>
+                    <td><span class="price">1200000</span>đ</td>
+                    <td>
+                        <div class="qty-box" style="justify-content: center;">
+                            <button class="minus">-</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="plus">+</button>
+                        </div>
+                    </td>
+                    <td style="text-align: right; font-weight: 600;"><span class="subtotal">1200000</span>đ</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="total-section">
+            Tổng hóa đơn: <span id="totalCart" style="color: #e67e22;">137300000</span>đ
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $(".plus, .minus").click(function() {
+                let row = $(this).closest(".item");
+                let qtyInput = row.find(".qty-input");
+                let currentQty = parseInt(qtyInput.val());
+                let price = parseInt(row.find(".price").text());
+
+                if ($(this).hasClass("plus")) {
+                    currentQty++;
+                } else if ($(this).hasClass("minus") && currentQty > 1) {
+                    currentQty--;
+                }
+
+                qtyInput.val(currentQty);
+                row.find(".subtotal").text(currentQty * price);
+                
+                let total = 0;
+                $(".subtotal").each(function() {
+                    total += parseInt($(this).text());
+                });
+                $("#totalCart").text(total);
+            });
+        });
+    </script>
+</body>
+</html>

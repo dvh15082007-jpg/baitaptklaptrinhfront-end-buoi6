@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài Lab 16 - Bộ Đếm</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #eef2f3; margin: 0; }
+        .counter-card { background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; width: 280px; }
+        #counter { font-size: 64px; font-weight: bold; margin: 15px 0; color: #333; transition: color 0.3s; }
+        button { font-weight: 600; border: none; padding: 10px 18px; margin: 4px; border-radius: 8px; cursor: pointer; transition: all 0.2s; background: #f1f3f5; color: #495057; }
+        button:hover { background: #e9ecef; transform: translateY(-1px); }
+        #btnTang { background: #4ca3ff; color: white; }
+        #btnTang:hover { background: #3395ff; }
+        #btnTang10 { background: #2ecc71; color: white; }
+        #btnTang10:hover { background: #27ae60; }
+    </style>
+</head>
+<body>
+
+    <div class="counter-card">
+        <span style="color: #868e96; font-size: 14px; font-weight: 600; text-transform: uppercase;">Lượt Tương Tác</span>
+        <div id="counter">0</div>
+        <button id="btnGiam">Giảm</button>
+        <button id="btnReset">Xóa bản ghi</button>
+        <button id="btnTang">Tăng</button>
+        <button id="btnTang10">+10</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let count = 0;
+            function updateUI() {
+                $("#counter").text(count);
+                if (count > 0) $("#counter").css("color", "#2ecc71");
+                else if (count < 0) $("#counter").css("color", "#e74c3c");
+                else $("#counter").css("color", "#333");
+            }
+            $("#btnTang").click(function() { count++; updateUI(); });
+            $("#btnGiam").click(function() { count--; updateUI(); });
+            $("#btnTang10").click(function() { count += 10; updateUI(); });
+            $("#btnReset").click(function() { count = 0; updateUI(); });
+        });
+    </script>
+</body>
+</html>
